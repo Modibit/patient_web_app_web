@@ -18,7 +18,7 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="اپلیکیشن رزرو نوبت کلینیک">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,10 +29,38 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>patient_web_app</title>
+  <title>سپامد</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+   <div id="loading_indicator" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0; text-align: center;">
+    <style>
+      #loading_indicator .logo {
+        max-width: 100px; /* اندازه لوگو را تنظیم کنید */
+        margin-bottom: 20px; /* فاصله بین لوگو و اسپینر */
+      }
+      #loading_indicator .loader {
+        border: 8px solid #f3f3f3; /* Light grey */
+        border-top: 8px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+        margin-bottom: 10px; /* فاصله بین اسپینر و متن */
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      #loading_indicator p {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+    <img src="icons/Icon-192.png" alt="سپامد | Sepamed" class="logo">
+    <div class="loader"></div>
+    <p>در حال بارگذاری ...</p>
+  </div>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
