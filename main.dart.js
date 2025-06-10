@@ -194749,7 +194749,7 @@
     getAllowTimes$0() {
       var $async$goto = 0,
         $async$completer = A._makeAsyncAwaitCompleter(type$.dynamic),
-        $async$handler = 1, $async$errorStack = [], $async$self = this, data, e, t1, t2, t3, exception, $async$exception;
+        $async$handler = 1, $async$errorStack = [], $async$self = this, data, element, e, t1, t2, t3, t4, exception, $async$exception;
       var $async$getAllowTimes$0 = A._wrapJsFunctionForAsync(function($async$errorCode, $async$result) {
         if ($async$errorCode === 1) {
           $async$errorStack.push($async$result);
@@ -194775,7 +194775,21 @@
               if (J.$index$asx(data, "times") != null) {
                 t2 = $async$self.allowTimes;
                 t2.set$value(J.$index$asx(data, "times"));
-                A.print(J.toString$0$(t2.get$value()));
+                for (t3 = J.get$iterator$ax(t2.get$value()); t3.moveNext$0();) {
+                  element = t3.get$current();
+                  if (J.$eq$(J.get$length$asx(J.$index$asx(element, "times")), 0)) {
+                    t4 = $.RxInterface_proxy;
+                    if (t4 != null)
+                      t4.addListener$1(t2.NotifyManager_subject);
+                    t4 = t2.RxObjectMixin___RxObjectMixin__value_A;
+                    t4 === $ && A.throwUnnamedLateFieldNI();
+                    J.remove$1$ax(t4, element);
+                    t4 = $.RxInterface_proxy;
+                    if (t4 != null)
+                      t4.addListener$1(t2.NotifyManager_subject);
+                    A.printString(J.toString$0$(t2.RxObjectMixin___RxObjectMixin__value_A));
+                  }
+                }
               }
               $async$handler = 1;
               // goto after finally
@@ -194818,6 +194832,43 @@
       }
       this.getAllowDays$0();
       A.GetNavigation_to($.$get$Get(), new A.SelectAppointmentTimePage(this, null), type$.dynamic);
+    },
+    confirmTime$0() {
+      var t2, t3, hourMinute, hour, minutes, t4, t5, t6, t7, t8, t9, t10, _this = this, _s5_ = "times", _null = null,
+        t1 = _this.allowTimes;
+      if (J.get$length$asx(t1.get$value()) === 0)
+        return;
+      t2 = _this.selectedHour;
+      if (J.$eq$(J.get$length$asx(J.$index$asx(J.$index$asx(t1.get$value(), t2.get$value()), _s5_)), 0))
+        return;
+      t3 = _this.selectedMinute;
+      hourMinute = J.$index$asx(J.$index$asx(J.$index$asx(t1.get$value(), t2.get$value()), _s5_), t3.get$value());
+      hour = hourMinute.split(":")[0];
+      minutes = hourMinute.split(":")[1];
+      t4 = _this.allowDays;
+      t5 = _this.selectedDay;
+      t6 = t5.get$value();
+      t6 = A.Primitives_parseInt(J.$index$asx(J.$index$asx(t4.get$value(), t6), "year"), _null);
+      if (t6 == null)
+        t6 = 0;
+      t7 = t5.get$value();
+      t7 = A.Primitives_parseInt(J.$index$asx(J.$index$asx(t4.get$value(), t7), "month"), _null);
+      if (t7 == null)
+        t7 = 0;
+      t8 = t5.get$value();
+      t8 = A.Primitives_parseInt(J.$index$asx(J.$index$asx(t4.get$value(), t8), "day"), _null);
+      if (t8 == null)
+        t8 = 0;
+      t9 = A.Primitives_parseInt(hour, _null);
+      if (t9 == null)
+        t9 = 0;
+      t10 = A.Primitives_parseInt(minutes, _null);
+      t6 = A.Gregorian_Gregorian$fromDateTime(A.DateTime$(t6, t7, t8, t9, t10 == null ? 0 : t10, 0, 0)).toJalali$0();
+      _this.reserve_time = t6;
+      _this.selectedTime.set$value(B.List_Lmm[t6.get$weekDay() - 1] + " " + B.JSInt_methods.toString$0(_this.reserve_time.day) + " " + B.List_7rN[_this.reserve_time.month - 1] + " \u0633\u0627\u0639\u062a : " + A.S(J.$index$asx(J.$index$asx(J.$index$asx(t1.get$value(), t2.get$value()), _s5_), t3.get$value())));
+      t5 = t5.get$value();
+      _this.time_table_id = J.$index$asx(J.$index$asx(t4.get$value(), t5), "documentId");
+      A.GetNavigation_back($.$get$Get());
     },
     sendSetAppointment$0() {
       var $async$goto = 0,
@@ -194959,23 +195010,27 @@
         t1 = B.CircularProgressIndicator_3jJ;
       else {
         t3 = t2.allowTimes;
-        _length = J.get$length$asx(t3.get$value());
-        _list = J.JSArray_JSArray$allocateGrowable(_length, type$.Widget);
-        for (t2 = t2.selectedHour, index = 0; index < _length; ++index) {
-          t4 = $.RxInterface_proxy;
-          if (t4 != null)
-            t4.addListener$1(t2.NotifyManager_subject);
-          t4 = t2.RxObjectMixin___RxObjectMixin__value_A;
-          t4 === $ && A.throwUnnamedLateFieldNI();
-          t4 = J.$eq$(t4, index);
-          t5 = $.RxInterface_proxy;
-          if (t5 != null)
-            t5.addListener$1(t3.NotifyManager_subject);
-          t5 = t3.RxObjectMixin___RxObjectMixin__value_A;
-          t5 === $ && A.throwUnnamedLateFieldNI();
-          _list[index] = new A.SizedBox(_null, _null, A.FilterChip$(A.Text$(J.$index$asx(J.$index$asx(t5, index), "hour"), _null, _null, _null, _null, _null, _null), new A.SelectAppointmentTimePage_build__closure0(t1, index), t4), _null);
+        if (J.get$length$asx(t3.get$value()) === 0)
+          t1 = A.Text$("\u0646\u0648\u0628\u062a \u0647\u0627\u06cc \u0627\u06cc\u0646 \u0632\u0645\u0627\u0646 \u0628\u0647 \u067e\u0627\u06cc\u0627\u0646 \u0631\u0633\u06cc\u062f\u0647 \u0627\u0633\u062a.", _null, _null, _null, _null, _null, _null);
+        else {
+          _length = J.get$length$asx(t3.get$value());
+          _list = J.JSArray_JSArray$allocateGrowable(_length, type$.Widget);
+          for (t2 = t2.selectedHour, index = 0; index < _length; ++index) {
+            t4 = $.RxInterface_proxy;
+            if (t4 != null)
+              t4.addListener$1(t2.NotifyManager_subject);
+            t4 = t2.RxObjectMixin___RxObjectMixin__value_A;
+            t4 === $ && A.throwUnnamedLateFieldNI();
+            t4 = J.$eq$(t4, index);
+            t5 = $.RxInterface_proxy;
+            if (t5 != null)
+              t5.addListener$1(t3.NotifyManager_subject);
+            t5 = t3.RxObjectMixin___RxObjectMixin__value_A;
+            t5 === $ && A.throwUnnamedLateFieldNI();
+            _list[index] = new A.SizedBox(_null, _null, A.FilterChip$(A.Text$(J.$index$asx(J.$index$asx(t5, index), "hour"), _null, _null, _null, _null, _null, _null), new A.SelectAppointmentTimePage_build__closure0(t1, index), t4), _null);
+          }
+          t1 = A.Wrap$(_list, 10, 10);
         }
-        t1 = A.Wrap$(_list, 10, 10);
       }
       return t1;
     },
@@ -194998,30 +195053,34 @@
         t3 = t2.allowTimes;
         if (J.get$isNotEmpty$asx(t3.get$value())) {
           t4 = t2.selectedHour;
-          _length = J.get$length$asx(J.$index$asx(J.$index$asx(t3.get$value(), t4.get$value()), "times"));
-          if (_length == null)
-            _length = 0;
-          _list = J.JSArray_JSArray$allocateGrowable(_length, type$.Widget);
-          for (t2 = t2.selectedMinute, index = 0; index < _length; ++index) {
-            t5 = $.RxInterface_proxy;
-            if (t5 != null)
-              t5.addListener$1(t2.NotifyManager_subject);
-            t5 = t2.RxObjectMixin___RxObjectMixin__value_A;
-            t5 === $ && A.throwUnnamedLateFieldNI();
-            t5 = J.$eq$(t5, index);
-            t6 = $.RxInterface_proxy;
-            if (t6 != null)
-              t6.addListener$1(t3.NotifyManager_subject);
-            t6 = t3.RxObjectMixin___RxObjectMixin__value_A;
-            t6 === $ && A.throwUnnamedLateFieldNI();
-            t7 = $.RxInterface_proxy;
-            if (t7 != null)
-              t7.addListener$1(t4.NotifyManager_subject);
-            t7 = t4.RxObjectMixin___RxObjectMixin__value_A;
-            t7 === $ && A.throwUnnamedLateFieldNI();
-            _list[index] = new A.SizedBox(_null, _null, A.FilterChip$(A.Text$(J.$index$asx(J.$index$asx(J.$index$asx(t6, t7), "times"), index), _null, _null, _null, _null, _null, _null), new A.SelectAppointmentTimePage_build__closure(t1, index), t5), _null);
+          if (J.$eq$(J.get$length$asx(J.$index$asx(t3.get$value(), t4.get$value())), 0))
+            t1 = A.Text$("\u0646\u0648\u0628\u062a \u0647\u0627\u06cc \u0627\u06cc\u0646 \u0632\u0645\u0627\u0646 \u0628\u0647 \u067e\u0627\u06cc\u0627\u0646 \u0631\u0633\u06cc\u062f\u0647", _null, _null, _null, _null, _null, _null);
+          else {
+            _length = J.get$length$asx(J.$index$asx(J.$index$asx(t3.get$value(), t4.get$value()), "times"));
+            if (_length == null)
+              _length = 0;
+            _list = J.JSArray_JSArray$allocateGrowable(_length, type$.Widget);
+            for (t2 = t2.selectedMinute, index = 0; index < _length; ++index) {
+              t5 = $.RxInterface_proxy;
+              if (t5 != null)
+                t5.addListener$1(t2.NotifyManager_subject);
+              t5 = t2.RxObjectMixin___RxObjectMixin__value_A;
+              t5 === $ && A.throwUnnamedLateFieldNI();
+              t5 = J.$eq$(t5, index);
+              t6 = $.RxInterface_proxy;
+              if (t6 != null)
+                t6.addListener$1(t3.NotifyManager_subject);
+              t6 = t3.RxObjectMixin___RxObjectMixin__value_A;
+              t6 === $ && A.throwUnnamedLateFieldNI();
+              t7 = $.RxInterface_proxy;
+              if (t7 != null)
+                t7.addListener$1(t4.NotifyManager_subject);
+              t7 = t4.RxObjectMixin___RxObjectMixin__value_A;
+              t7 === $ && A.throwUnnamedLateFieldNI();
+              _list[index] = new A.SizedBox(_null, _null, A.FilterChip$(A.Text$(J.$index$asx(J.$index$asx(J.$index$asx(t6, t7), "times"), index), _null, _null, _null, _null, _null, _null), new A.SelectAppointmentTimePage_build__closure(t1, index), t5), _null);
+            }
+            t1 = A.Wrap$(_list, 10, 10);
           }
-          t1 = A.Wrap$(_list, 10, 10);
         } else
           t1 = B.SizedBox_null_null_null_null;
       }
@@ -195037,39 +195096,7 @@
   };
   A.SelectAppointmentTimePage_build_closure4.prototype = {
     call$0() {
-      var t8, t9, t10, t11, _null = null,
-        t1 = this.$this.controller,
-        t2 = t1.allowTimes,
-        t3 = t1.selectedHour,
-        t4 = t1.selectedMinute,
-        hourMinute = J.$index$asx(J.$index$asx(J.$index$asx(t2.get$value(), t3.get$value()), "times"), t4.get$value()),
-        hour = hourMinute.split(":")[0],
-        minutes = hourMinute.split(":")[1],
-        t5 = t1.allowDays,
-        t6 = t1.selectedDay,
-        t7 = t6.get$value();
-      t7 = A.Primitives_parseInt(J.$index$asx(J.$index$asx(t5.get$value(), t7), "year"), _null);
-      if (t7 == null)
-        t7 = 0;
-      t8 = t6.get$value();
-      t8 = A.Primitives_parseInt(J.$index$asx(J.$index$asx(t5.get$value(), t8), "month"), _null);
-      if (t8 == null)
-        t8 = 0;
-      t9 = t6.get$value();
-      t9 = A.Primitives_parseInt(J.$index$asx(J.$index$asx(t5.get$value(), t9), "day"), _null);
-      if (t9 == null)
-        t9 = 0;
-      t10 = A.Primitives_parseInt(hour, _null);
-      if (t10 == null)
-        t10 = 0;
-      t11 = A.Primitives_parseInt(minutes, _null);
-      t7 = A.Gregorian_Gregorian$fromDateTime(A.DateTime$(t7, t8, t9, t10, t11 == null ? 0 : t11, 0, 0)).toJalali$0();
-      t1.reserve_time = t7;
-      t1.selectedTime.set$value(B.List_Lmm[t7.get$weekDay() - 1] + " " + B.JSInt_methods.toString$0(t1.reserve_time.day) + " " + B.List_7rN[t1.reserve_time.month - 1] + " \u0633\u0627\u0639\u062a : " + A.S(J.$index$asx(J.$index$asx(J.$index$asx(t2.get$value(), t3.get$value()), "times"), t4.get$value())));
-      t6 = t6.get$value();
-      t1.time_table_id = J.$index$asx(J.$index$asx(t5.get$value(), t6), "documentId");
-      A.GetNavigation_back($.$get$Get());
-      return _null;
+      return this.$this.controller.confirmTime$0();
     },
     $signature: 0
   };
