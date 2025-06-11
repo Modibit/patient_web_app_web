@@ -1,21 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="/">
-
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="اپلیکیشن رزرو نوبت کلینیک">
@@ -31,36 +17,150 @@
 
   <title>سپامد</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    #loading_indicator {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    #loading_indicator .logo {
+      max-width: 100px;
+      margin-bottom: 30px;
+    }
+
+    #loading_indicator .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #bc004b;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #loading_indicator p {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #progress-container {
+      width: 200px;
+      height: 10px;
+      background: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #bc004b;
+      transition: width 0.2s;
+    }
+
+    #progress-text {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-   <div id="loading_indicator" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0; text-align: center;">
-    <style>
-      #loading_indicator .logo {
-        max-width: 100px; /* اندازه لوگو را تنظیم کنید */
-        margin-bottom: 30px; /* فاصله بین لوگو و اسپینر */
-      }
-      #loading_indicator .loader {
-        border: 8px solid #f3f3f3; /* Light grey */
-        border-top: 8px solid #bc004b; /* Blue */
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        animation: spin 1s linear infinite;
-        margin-bottom: 10px; /* فاصله بین اسپینر و متن */
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      #loading_indicator p {
-        margin: 0;
-        font-family: Arial, sans-serif;
-      }
-    </style>
+  <div id="loading_indicator">
     <img src="icons/Icon-192.png" alt="سپامد | Sepamed" class="logo">
     <div class="loader"></div>
     <p>در حال بارگذاری ...</p>
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+    <div id="progress-text">0%</div>
   </div>
-  <script src="flutter_bootstrap.js" async></script>
+
+  <script>
+    const assetsToLoad = [
+      "main.dart.js",
+      "flutter.js",
+      "canvaskit/canvaskit.js",
+      "canvaskit/canvaskit.wasm",
+      "assets/AssetManifest.json",
+      "assets/FontManifest.json"
+    ];
+
+    let totalSize = 0;
+    let loadedSize = 0;
+
+    const progressBar = document.getElementById("progress-bar");
+    const progressText = document.getElementById("progress-text");
+
+    const updateProgress = () => {
+      const percent = Math.floor((loadedSize / totalSize) * 100);
+      progressBar.style.width = percent + "%";
+      progressText.textContent = percent + "%";
+    };
+
+    const loadWithProgress = (url) => {
+      return fetch(url)
+        .then((response) => {
+          const contentLength = response.headers.get("content-length");
+          if (!contentLength) return response.blob(); // fallback
+
+          const total = parseInt(contentLength, 10);
+          totalSize += total;
+
+          const reader = response.body.getReader();
+          let received = 0;
+
+          return new ReadableStream({
+            start(controller) {
+              function push() {
+                reader.read().then(({ done, value }) => {
+                  if (done) {
+                    controller.close();
+                    return;
+                  }
+                  received += value.length;
+                  loadedSize += value.length;
+                  updateProgress();
+                  controller.enqueue(value);
+                  push();
+                });
+              }
+              push();
+            },
+          });
+        })
+        .then((stream) => new Response(stream))
+        .then((res) => res.blob());
+    };
+
+    const preloadAssets = async () => {
+      for (let url of assetsToLoad) {
+        try {
+          await loadWithProgress(url);
+        } catch (e) {
+          console.error("خطا در بارگذاری", url, e);
+        }
+      }
+
+      const script = document.createElement("script");
+      script.src = "flutter_bootstrap.js";
+      script.async = true;
+      document.body.appendChild(script);
+    };
+
+    preloadAssets();
+  </script>
 </body>
 </html>
