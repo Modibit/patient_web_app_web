@@ -196587,31 +196587,49 @@
       return A._asyncStartSync($async$setBirthDate$0, $async$completer);
     },
     validate$0() {
-      var t1,
+      var t1, _this = this, _null = null,
         _s7_ = "warning";
-      if (!this.isValidFirstName$0()) {
+      if (!_this.isValidFirstName$0()) {
         $.$get$Get();
         t1 = $.$get$GetNavigation__getxController()._key;
         t1 = $.WidgetsBinding__instance.WidgetsBinding__buildOwner._globalKeyRegistry.$index(0, t1);
         t1.toString;
-        A.showToastification(t1, "\u0646\u0627\u0645 \u0631\u0627 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f.", null, _s7_);
+        A.showToastification(t1, "\u0646\u0627\u0645 \u0631\u0627 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f.", _null, _s7_);
         return false;
       }
-      if (!this.isValidLastName$0()) {
+      if (!_this.isValidLastName$0()) {
         $.$get$Get();
         t1 = $.$get$GetNavigation__getxController()._key;
         t1 = $.WidgetsBinding__instance.WidgetsBinding__buildOwner._globalKeyRegistry.$index(0, t1);
         t1.toString;
-        A.showToastification(t1, "\u0646\u0627\u0645 \u062e\u0627\u0646\u0648\u0627\u062f\u06af\u06cc \u0631\u0627 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f.", null, _s7_);
+        A.showToastification(t1, "\u0646\u0627\u0645 \u062e\u0627\u0646\u0648\u0627\u062f\u06af\u06cc \u0631\u0627 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f.", _null, _s7_);
         return false;
       }
-      if (!this.isValidNationalCode$0()) {
+      if (!_this.isValidNationalCode$0()) {
         $.$get$Get();
         t1 = $.$get$GetNavigation__getxController()._key;
         t1 = $.WidgetsBinding__instance.WidgetsBinding__buildOwner._globalKeyRegistry.$index(0, t1);
         t1.toString;
-        A.showToastification(t1, "\u06a9\u062f \u0645\u0644\u06cc \u0631\u0627 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f.", null, _s7_);
+        A.showToastification(t1, "\u06a9\u062f \u0645\u0644\u06cc \u0631\u0627 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f.", _null, _s7_);
         return false;
+      }
+      if (_this.isInAgeCondition.get$value()) {
+        if (_this.job._change_notifier$_value.text.length === 0) {
+          $.$get$Get();
+          t1 = $.$get$GetNavigation__getxController()._key;
+          t1 = $.WidgetsBinding__instance.WidgetsBinding__buildOwner._globalKeyRegistry.$index(0, t1);
+          t1.toString;
+          A.showToastification(t1, "\u0644\u0637\u0641\u0627 \u062a\u062d\u0635\u06cc\u0644\u0627\u062a \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f.", _null, _s7_);
+          return false;
+        }
+        if (_this.education._change_notifier$_value.text.length === 0) {
+          $.$get$Get();
+          t1 = $.$get$GetNavigation__getxController()._key;
+          t1 = $.WidgetsBinding__instance.WidgetsBinding__buildOwner._globalKeyRegistry.$index(0, t1);
+          t1.toString;
+          A.showToastification(t1, "\u0644\u0637\u0641\u0627 \u0634\u063a\u0644 \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f.", _null, _s7_);
+          return false;
+        }
       }
       return true;
     },
