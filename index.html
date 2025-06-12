@@ -102,7 +102,7 @@
       "assets/assets/images/logo.png"
     ];
 
-    let totalSize = 0;
+    let totalSize = 8000000;
     let loadedSize = 0;
 
     const progressBar = document.getElementById("progress-bar");
@@ -120,8 +120,8 @@
           const contentLength = response.headers.get("content-length");
           if (!contentLength) return response.blob(); // fallback
 
-          const total = parseInt(contentLength, 10);
-          totalSize += total;
+          // const total = parseInt(contentLength, 10);
+          // totalSize += total;
 
           const reader = response.body.getReader();
           let received = 0;
