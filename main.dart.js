@@ -207213,7 +207213,7 @@
       t5 = A.S(t5 > 9 ? t5 : "0" + t5);
       t3 = t3.minute;
       t6 = type$.JSArray_Widget;
-      return A.Scaffold$(t1, A.Center$(new A.Padding(B.EdgeInsets_8_8_8_8, A.Column$(A._setArrayType([new A.SizedBox(_null, t2._dy - 135, A.ListView$(A._setArrayType([A.Column$(A._setArrayType([new A.LottieBuilder(new A.AssetLottie("assets/lottie/tick.json", _null, _null, _null, _null, false), _null, _null, _null, _null, _null, _null, _null, _null, _null, 250, _null, B.BoxFit_1, _null, _null, _null, _null, _null, _null, _null), t4, A.Text$("\u0633\u0627\u0639\u062a " + t5 + ":" + A.S(t3 > 9 ? t3 : "0" + t3) + " \u062b\u0628\u062a \u0634\u062f.", _null, _null, _null, _null, _null, _null), B.SizedBox_null_30_null_null, A.Row$(A._setArrayType([B.Text_M43, A.Text$(this.trackingCode, _null, _null, _null, B.TextStyle_mvy, _null, _null)], t6), B.CrossAxisAlignment_2, B.MainAxisAlignment_2, B.MainAxisSize_1, 12), B.Padding_BiC, B.Padding_oAz], t6), B.CrossAxisAlignment_2, B.MainAxisAlignment_0, B.MainAxisSize_1)], t6)), _null), new A.Padding(B.EdgeInsets_8_8_8_8, A.FilledButton$(B.Text_oof, new A.ApprovalPage_build_closure()), _null)], t6), B.CrossAxisAlignment_2, B.MainAxisAlignment_0, B.MainAxisSize_1), _null), _null, _null), _null);
+      return A.Scaffold$(t1, A.Center$(new A.Padding(B.EdgeInsets_8_8_8_8, A.Column$(A._setArrayType([new A.SizedBox(_null, t2._dy - 135, A.ListView$(A._setArrayType([A.Column$(A._setArrayType([new A.LottieBuilder(new A.AssetLottie("assets/lottie/tick.json", _null, _null, _null, _null, false), _null, _null, _null, _null, _null, _null, _null, _null, _null, 250, _null, B.BoxFit_1, _null, _null, _null, _null, _null, _null, _null), t4, A.Text$("\u0633\u0627\u0639\u062a " + t5 + ":" + A.S(t3 > 9 ? t3 : "0" + t3) + " \u062b\u0628\u062a \u0634\u062f.", _null, _null, _null, _null, _null, _null), B.SizedBox_null_30_null_null, A.Row$(A._setArrayType([B.Text_M43, A.Text$(this.trackingCode, _null, _null, _null, B.TextStyle_mvy, _null, _null)], t6), B.CrossAxisAlignment_2, B.MainAxisAlignment_2, B.MainAxisSize_1, 12), B.Padding_BiC, B.Padding_8dY], t6), B.CrossAxisAlignment_2, B.MainAxisAlignment_0, B.MainAxisSize_1)], t6)), _null), new A.Padding(B.EdgeInsets_8_8_8_8, A.FilledButton$(B.Text_oof, new A.ApprovalPage_build_closure()), _null)], t6), B.CrossAxisAlignment_2, B.MainAxisAlignment_0, B.MainAxisSize_1), _null), _null, _null), _null);
     }
   };
   A.ApprovalPage_build_closure.prototype = {
@@ -229067,6 +229067,8 @@
     B.Orientation_0 = new A.Orientation(0, "portrait");
     B.Orientation_1 = new A.Orientation(1, "landscape");
     B.OutlinedButtonThemeData_null = new A.OutlinedButtonThemeData(null);
+    B.Text_75K = new A.Text("\u0622\u062f\u0631\u0633 :\u0627\u0635\u0641\u0647\u0627\u0646 - \u0627\u0635\u0641\u0647\u0627\u0646 \u062e\u06cc\u0627\u0628\u0627\u0646 \u0646\u0638\u0631 \u0634\u0631\u0642\u06cc \u0646\u0631\u0633\u06cc\u062f\u0647 \u0628\u0647 \u062a\u0627\u0644\u0627\u0631 \u0627\u0646\u062f\u06cc\u0634\u0647 \u0631\u0648\u0628\u0631\u0648 \u06af\u0632 \u0639\u0645\u0648\u0642\u0646\u0627\u062f\u060c \u0645\u062c\u062a\u0645\u0639 \u0627\u0645\u06cc\u0646 \u0637\u0628\u0642\u0647 \u06f1 ", null, null, null, null, null, null, null, null);
+    B.Padding_8dY = new A.Padding(B.EdgeInsets_8_8_8_8, B.Text_75K, null);
     B.TextStyle_jRG = new A.TextStyle(true, B.Color_20c, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     B.Text_Zg5 = new A.Text("\u0644\u0637\u0641\u0627 \u06f3\u06f0 \u062f\u0642\u06cc\u0642\u0647 \u0642\u0628\u0644 \u0627\u0632 \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a \u062e\u0648\u062f \u062f\u0631 \u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u062d\u0627\u0636\u0631 \u0634\u0648\u06cc\u062f.", null, B.TextStyle_jRG, null, null, null, null, null, null);
     B.Padding_BiC = new A.Padding(B.EdgeInsets_8_8_8_8, B.Text_Zg5, null);
@@ -229074,8 +229076,6 @@
     B.Padding_I4s = new A.Padding(B.EdgeInsets_8_8_8_8, B.Text_GaB, null);
     B.Text_XYc = new A.Text("\u0631\u0648\u0632 :", null, null, null, null, null, null, null, null);
     B.Padding_IVq = new A.Padding(B.EdgeInsets_8_8_8_8, B.Text_XYc, null);
-    B.Text_G3h = new A.Text("\u0622\u062f\u0631\u0633 : \u0627\u0635\u0641\u0647\u0627\u0646 \u0645\u06cc\u062f\u0627\u0646 \u0641\u06cc\u0636 \u062e\u06cc\u0627\u0628\u0627\u0646 \u0645\u06cc\u0631\u0641\u0646\u062f\u0631\u0633\u06a9\u06cc \u0634\u0631\u0642\u06cc \u0637\u0628\u0642\u0647 \u0647\u0645\u06a9\u0641 \u062f\u0631\u0645\u0627\u0646\u06af\u0627\u0647 \u0628\u06cc\u0645\u0627\u0631\u0633\u062a\u0627\u0646 \u0633\u067e\u0627\u0647\u0627\u0646", null, null, null, null, null, null, null, null);
-    B.Padding_oAz = new A.Padding(B.EdgeInsets_8_8_8_8, B.Text_G3h, null);
     B.Text_4gg = new A.Text("\u0632\u0645\u0627\u0646 \u0645\u0631\u0627\u062c\u0639\u0647 :", null, null, null, null, null, null, null, null);
     B.Padding_sKH = new A.Padding(B.EdgeInsets_8_8_8_8, B.Text_4gg, null);
     B.PageScrollPhysics_null = new A.PageScrollPhysics(null);
