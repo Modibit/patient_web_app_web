@@ -1,11 +1,11 @@
 {
-    "name": "patient_web_app",
-    "short_name": "patient_web_app",
+    "name": "Sepamed",
+    "short_name": "sepamed",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#bc004b",
-    "description": "A new Flutter project.",
+    "description": "Sepamed",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
